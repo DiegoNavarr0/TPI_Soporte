@@ -1,6 +1,6 @@
 # TPI Soporte: Sistema de Gestión Financiera de Gastos Personales
 
-Se encontraran 3 capas
+Se encontrarán 3 capas
 
 1. Capa de Datos
 2. Capa de Negocio
