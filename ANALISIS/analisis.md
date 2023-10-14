@@ -1,5 +1,5 @@
  # ANALISIS
-> Se crearan los documentos del Análisis
+> Se crearán los documentos del Análisis
 ## Documentos:
 1. Caso de Uso Resumen
 2. Caso de Uso Usuario
