@@ -6,7 +6,7 @@ Se encontraran 3 capas
 2. Capa de Negocio
 3. Capa de Diseño
 
-## Iteración 1: //
+## Iteración 1: 
 
 Para la Capa de Datos: crearemos una Base de Datos en MySql
 Para la Capa de Negocio: definiremos los Casos de Uso para las distintas funciones del programa y el Modelo del Dominio
