@@ -1,7 +1,3 @@
-﻿
-
-
-> Written with [StackEdit](https://stackedit.io/).
-> # ANALISIS
+ # ANALISIS
 > Se crearan los documentos del Análisis
 > 
