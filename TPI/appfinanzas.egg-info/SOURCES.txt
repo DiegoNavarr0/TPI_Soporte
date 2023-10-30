@@ -1,0 +1,14 @@
+setup.py
+appfinanzas/__init__.py
+appfinanzas/conector_db.py
+appfinanzas/main.py
+appfinanzas/ruta_calculadora.py
+appfinanzas/ruta_inicio.py
+appfinanzas/ruta_login.py
+appfinanzas/ruta_wishes.py
+appfinanzas/testin.py
+appfinanzas.egg-info/PKG-INFO
+appfinanzas.egg-info/SOURCES.txt
+appfinanzas.egg-info/dependency_links.txt
+appfinanzas.egg-info/requires.txt
+appfinanzas.egg-info/top_level.txt

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Transacción</title>
+</head>
+<body>
+    <h1>Agregar Transacción</h1>
+    <form method="post" action="/agregar_transaccion">
+    <label for="descripcion">Descripción:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br>
+
+    <label for="monto">Monto:</label>
+    <input type="number" name="monto" id="monto" required><br>
+
+    <label>Tipo de Transacción:</label>
+    <input type="radio" name="tipo_transaccion" value="1" required> Ingreso
+    <input type="radio" name="tipo_transaccion" value="2" required> Egreso
+
+    <input type="submit" value="Agregar Transacción">
+</form>
+    <a href="/inicio" class="btn btn-primary">Volver a Inicio</a>
+</body>
+</html>

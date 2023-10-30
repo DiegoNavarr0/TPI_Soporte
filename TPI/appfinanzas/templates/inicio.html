@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio - Tu Aplicación de Finanzas</title>
+</head>
+<body>
+    <h1>Saldo Actual</h1>
+    <p>El saldo actual es: ${{ saldo_actual if saldo_actual is not none else 0 }}</p>
+
+    <h1>Historial de Transacciones</h1>
+    <table>
+        <tr>
+            <th>Tipo de Transacción</th>
+            <th>Descripción</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+        </tr>
+        {% for transaccion in historial %}
+            <tr>
+                <td>
+                    {% if transaccion[0] == 1 %}
+                        Ingreso
+                    {% elif transaccion[0] == 2 %}
+                        Egreso
+                    {% else %}
+                        {{ transaccion[0] }}  <!-- Display the ID if it's neither 1 nor 2 -->
+                    {% endif %}
+                </td>
+                <td>{{ transaccion[1] }}</td>
+                <td>${{ transaccion[2] }}</td>
+                <td>${{ transaccion[3] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="/agregar_transaccion" class="btn btn-primary">Agregar Transacción</a>
+</body>
+</html>
