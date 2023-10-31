@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Wish</title>
+</head>
+<body>
+    <h1>Agregar Wish</h1>
+    <form method="post" action="/agregar_wish">
+        <label for="motivo">Motivo:</label>
+        <input type="text" name="motivo" id="motivo" required><br>
+
+        <label for="monto">Monto:</label>
+        <input type="number" name="monto" id="monto" required><br>
+
+        <input type="submit" value="Agregar Wish">
+    </form>
+    <a href="{{ url_for('gastos_fijos') }}" class="button is-link">Cancelar</a>
+</body>
+</html>

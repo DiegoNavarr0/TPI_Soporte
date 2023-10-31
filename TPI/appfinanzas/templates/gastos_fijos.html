@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gastos Fijos</title>
+</head>
+<body>
+    <h1>Gastos Fijos</h1>
+    <a href="/agregar_gasto_fijo" class="btn btn-primary">Agregar Gastos Fijos</a>
+    <table>
+        <tr>
+            <th>Descripción</th>
+            <th>Monto</th>
+            <th>Fecha de Vencimiento</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        {% for gasto in gastos %}
+            <tr>
+                <td>{{ gasto[2] }}</td>
+                <td>${{ gasto[3] }}</td>
+                <td>{{ gasto[4] }}</td>
+                <td><a href="{{ url_for('editar_gasto_fijo', id_gastosfijos = gasto[0]) }}" class="button is-info">Editar</a></td>
+                <td><a href="{{ url_for('eliminar_gasto_fijo', id_gastosfijos= gasto[0]) }}" class="button is-danger">Eliminar</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+<a href="/inicio" class="btn btn-primary">Volver a Inicio</a>
+</html>

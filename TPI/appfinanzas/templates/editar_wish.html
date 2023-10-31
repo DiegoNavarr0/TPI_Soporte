@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Wish</title>
+</head>
+<body>
+    <h1>Editar Wish</h1>
+    <form method="post" action="{{ url_for('editar_wish', id_wish = wish[0]) }}">
+        <div class="field">
+            <label for="motivo" class="label">Motivo:</label>
+            <div class="control">
+                <input type="text" id="motivo" name="motivo" value="{{ wish[2] }}" required>
+            </div>
+        </div>
+        <div class="field">
+            <label for="monto" class="label">Monto:</label>
+            <div class="control">
+                <input type="number" step="0.01" id="monto" name="monto" value="{{ wish[3] }}" required>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-primary" type="submit">Guardar Cambios</button>
+            </div>
+            <div class="control">
+                <a href="{{ url_for('wish') }}" class="button is-link">Cancelar</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
