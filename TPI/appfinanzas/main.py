@@ -42,6 +42,7 @@ def registro():
 def inicio():
     if 'id_usuario' in session:
         id_usuario = session['id_usuario']
+        controlador_finanzas.restar_gastos_fijos_a_usuario(id_usuario)
         saldo_actual = controlador_finanzas.obtener_saldo(id_usuario)
         historial = controlador_finanzas.obtener_historial_transacciones(id_usuario)
         nombre_usuario = controlador_finanzas.obtener_nombre_usuario(id_usuario)
@@ -116,13 +117,24 @@ def editar_wish(id_wish):
     else:
         return redirect('/')
 
+from flask import request
+
 @app.route('/eliminar_wish/<int:id_wish>', methods=['GET'])
 def eliminar_wish(id_wish):
-    if controlador_finanzas.eliminar_wish(id_wish):
-        return redirect('/wish')
-    else:
-        flash("Error eliminando wish", "error")
-        return redirect('/wish')
+    if 'id_usuario' in session:
+        id_usuario = session['id_usuario']
+        reason = request.args.get('razon')  # Obtener la razón de la solicitud
+
+        if reason == "2":  # Si la razón es "Ya lo compré"
+            # Llama a la función para insertar la transacción
+            controlador_finanzas.insertar_transaccion_wish(id_wish, id_usuario)
+
+        if controlador_finanzas.eliminar_wish(id_wish):
+            return redirect('/wish')
+        else:
+            flash("Error eliminando wish", "error")
+            return redirect('/wish')
+
 
 @app.route('/gastos_fijos', methods=['GET', 'POST'])
 def gastos_fijos():
@@ -140,9 +152,9 @@ def agregar_gasto_fijo():
             id_usuario = session['id_usuario']
             descripcion = request.form.get('descripcion')
             monto = float(request.form.get('monto'))
-            fecha_vencimiento = datetime.strptime(request.form.get('fecha_vencimiento'), '%d')
-
-            if controlador_finanzas.agregar_gasto_fijo(id_usuario, descripcion, monto, fecha_vencimiento):
+            fecha_vencimiento = int(request.form.get('fecha_vencimiento'))
+            mes_anterior = datetime.now().month - 1
+            if controlador_finanzas.agregar_gasto_fijo(id_usuario, descripcion, monto, fecha_vencimiento, mes_anterior):
                 return redirect('/gastos_fijos')
             else:
                 return render_template('gastos_fijos.html', error="Error al agregar el wish")
@@ -157,7 +169,7 @@ def editar_gasto_fijo(id_gastosfijos):
             id_usuario = session['id_usuario']
             descripcion = request.form.get('descripcion')
             monto = float(request.form.get('monto'))
-            fecha_vencimiento = datetime.strptime(request.form.get('fecha_vencimiento'), '%d')
+            fecha_vencimiento = int(request.form.get('fecha_vencimiento'))
 
             if controlador_finanzas.editar_gasto_fijo(id_usuario, id_gastosfijos, descripcion, monto, fecha_vencimiento):
                 return redirect('/gastos_fijos')
@@ -179,6 +191,15 @@ def eliminar_gasto_fijo(id_gastosfijos):
     else:
         flash("Error eliminando el gasto fijo", "error")
         return redirect('/gastos_fijos')
+
+@app.route('/calculadora')
+def calculadora():
+    controlador_finanzas.mostrar_calculadora()  # Llama a la función que muestra la calculadora
+    return redirect('/inicio')
+
+@app.route('/calculadora2')
+def calculadora2():
+    return render_template('calculadora.html')
 
 if __name__ == "__main__":
     app.run(host= '0.0.0.0', port = 8000, debug=True)

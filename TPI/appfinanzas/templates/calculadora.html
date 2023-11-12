@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 0;
+            font-size: 36px;
+        }
+
+        #result {
+            border: 1px solid #ddd;
+            text-align: right;
+            padding: 20px;
+            font-size: 36px;
+        }
+
+        h1 {
+            font-size: 48px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 36px;
+        }
+
+        .btn-blue {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-container {
+            margin-top: 20px; /* Agregamos un margen en la parte superior */
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora</h1>
+    <table>
+        <tr>
+            <td colspan="4" id="result">0</td>
+        </tr>
+        <tr>
+            <td><button class="btn-primary" onclick="appendToResult('7')">7</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('8')">8</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('9')">9</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('+')">+</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn-primary" onclick="appendToResult('4')">4</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('5')">5</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('6')">6</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn-primary" onclick="appendToResult('1')">1</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('2')">2</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('3')">3</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('*')">*</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn-primary" onclick="clearResult()">C</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('0')">0</button></td>
+            <td><button class="btn-primary" onclick="calculateResult()">=</button></td>
+            <td><button class="btn-primary" onclick="appendToResult('/')">/</button></td>
+        </tr>
+    </table>
+    <div class="button-container">
+        <a href="/inicio" class="btn-blue">Volver a Inicio</a>
+    </div>
+    <script>
+        let result = document.getElementById('result');
+        let currentInput = '0';
+
+        function appendToResult(value) {
+            if (currentInput === '0' && value !== '+') {
+                currentInput = value;
+            } else {
+                currentInput += value;
+            }
+            result.textContent = currentInput;
+        }
+
+        function clearResult() {
+            currentInput = '0';
+            result.textContent = currentInput;
+        }
+
+        function calculateResult() {
+            try {
+                currentInput = eval(currentInput).toString();
+                result.textContent = currentInput;
+            } catch (error) {
+                result.textContent = 'Error';
+                currentInput = '0';
+            }
+        }
+    </script>
+</body>
+</html>

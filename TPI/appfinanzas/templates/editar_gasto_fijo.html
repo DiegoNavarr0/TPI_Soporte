@@ -2,14 +2,68 @@
 <html lang="es">
 <head>
     <title>Editar Gasto Fijo</title>
-</head>
+    <style>
+        body {
+            text-align: center;
+        }
 
+        h3 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .field {
+            margin: 10px 0;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="number"] {
+            margin-bottom: 10px; /* Agregado margen inferior para separar el campo "Monto" del botón "Guardar Cambios" */
+        }
+
+        .button.is-primary {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .button.is-link {
+            background-color: #f44336; /* Cambiado a rojo el background del botón "Cancelar" */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button.is-primary + .button.is-link {
+            margin-left: 20px; /* Aumentado el margen entre el botón "Guardar Cambios" y "Cancelar" a 20px */
+        }
+    </style>
+</head>
 {% block contenido %}
 <section class="section">
     <div class="columns">
         <div class="column">
             <h3 class="is-size-3">Editar Gasto Fijo</h3>
-            <form method="post" action="{{ url_for('editar_gasto_fijo', id_gastosfijos=gasto.id_gastosfijos) }}">
+            <form method="post" action="{{ url_for('editar_gasto_fijo', id_gastosfijos=gasto[0]) }}">
                 <div class="field">
                     <label for="descripcion" class="label">Descripción</label>
                     <div class="control">
@@ -18,23 +72,23 @@
                 </div>
                 <div class="field">
                     <label for="monto" class="label">Monto</label>
-                    <div class="control">
+                    <div class ="control">
                         <input class="input" type="number" step="0.01" id="monto" name="monto" value="{{ gasto.monto }}" required>
                     </div>
                 </div>
                 <div class="field">
-                    <label for="fecha_vencimiento" class="label">Fecha de Vencimiento</label>
+                    <label for="fecha_vencimiento" class="label">Día de Vencimiento (1-28)</label>
                     <div class="control">
-                        <input class="input" type="date" id="fecha_vencimiento" name="fecha_vencimiento" value="{{ gasto.fecha_vencimiento|strftime('%Y-%m-%d') }}" required>
+                        <input class="input" type="number" min="1" max="28" id="fecha_vencimiento" name="fecha_vencimiento" required>
                     </div>
                 </div>
-                <div class="field is-grouped">
-                    <div class="control">
+                <div class="field is-grouped button-container">
+                    <div class="control" style="margin-bottom: 20px;"> <!-- Margen inferior del botón "Guardar Cambios" -->
                         <button class="button is-primary" type="submit">Guardar Cambios</button>
                     </div>
-                    <div class="control">
-                        <a href="{{ url_for('gastos_fijos') }}" class="button is-link">Cancelar</a>
-                    </div>
+                <div class="control" style="margin-top: 20px;"> <!-- Margen superior del botón "Cancelar" -->
+                    <a href="{{ url_for('gastos_fijos') }}" class="button is-link">Cancelar</a>
+                </div>
                 </div>
             </form>
         </div>

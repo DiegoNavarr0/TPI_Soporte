@@ -2,22 +2,156 @@
 <html>
 <head>
     <title>Agregar Transacción</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background: #f2f2f2;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-blue {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Estilo para los checkboxes más pequeños */
+        .radio-container {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .radio-label {
+            margin-right: 10px;
+        }
+
+        .custom-checkbox {
+            display: inline-block;
+            position: relative;
+            padding-left: 18px; /* Reduje el tamaño del checkbox */
+            cursor: pointer;
+        }
+
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 18px; /* Ajusté la altura del checkbox */
+            width: 18px; /* Ajusté el ancho del checkbox */
+            background-color: #ccc;
+        }
+
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: #4CAF50;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .custom-checkbox .checkmark:after {
+            left: 5px; /* Ajusté la posición del checkmark */
+            top: 3px; /* Ajusté la posición del checkmark */
+            width: 4px; /* Ajusté el tamaño del checkmark */
+            height: 9px; /* Ajusté el tamaño del checkmark */
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Agregando margen al botón de "Agregar Transacción" */
+        .btn-primary {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Agregar Transacción</h1>
-    <form method="post" action="/agregar_transaccion">
-    <label for="descripcion">Descripción:</label>
-    <input type="text" name="descripcion" id="descripcion" required><br>
+    <div class="container">
+        <h1>Agregar Transacción</h1>
+        <div class="form-container">
+            <form method="post" action="/agregar_transaccion">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" name="descripcion" id="descripcion" required>
 
-    <label for="monto">Monto:</label>
-    <input type="number" name="monto" id="monto" required><br>
+                <label for="monto">Monto:</label>
+                <input type="number" name="monto" id="monto" required>
 
-    <label>Tipo de Transacción:</label>
-    <input type="radio" name="tipo_transaccion" value="1" required> Ingreso
-    <input type="radio" name="tipo_transaccion" value="2" required> Egreso
+                <!-- Contenedor de los checkboxes con checkboxes más pequeños -->
+                <div class="radio-container">
+                    <span class="radio-label">Tipo de Transacción:</span>
+                    <label class="custom-checkbox radio-label">
+                        Ingreso
+                        <input type="radio" name="tipo_transaccion" value="1" required>
+                        <span class="checkmark"></span>
+                    </label>
 
-    <input type="submit" value="Agregar Transacción">
-</form>
-    <a href="/inicio" class="btn btn-primary">Volver a Inicio</a>
+                    <label class="custom-checkbox radio-label">
+                        Egreso
+                        <input type="radio" name="tipo_transaccion" value="2" required>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <input type="submit" value="Agregar Transacción" class="btn-primary">
+            </form>
+        </div>
+
+        <div class="button-container">
+            <a href="/inicio" class="btn-blue">Volver a Inicio</a>
+        </div>
+    </div>
 </body>
 </html>

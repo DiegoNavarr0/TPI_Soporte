@@ -19,8 +19,8 @@
         }
 
         th {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #ccc; /* Cambiado a un gris suave (#ccc) */
+            color: #333; /* Texto de color oscuro */
         }
 
         .button-container {
@@ -47,14 +47,42 @@
         .table-container {
             margin-bottom: 20px; /* Ajusta el margen inferior de la tabla */
         }
+
+        .login-button {
+            margin-top: 20px; /* Ajusta el margen superior para separar del botón de Gastos Fijos */
+        }
+
+        .saldo-actual {
+            background-color: #2196F3; /* Color de fondo azul */
+            color: white;
+            border-radius: 10px; /* Borde redondeado */
+            padding: 20px; /* Aumentado el tamaño del texto */
+            margin: 20px 0; /* Margen superior e inferior para separar el saldo actual */
+            text-align: center;
+            font-size: 24px; /* Tamaño de fuente más grande */
+        }
+        .iframe-container {
+            text-align: center;
+            margin-top: 20px; /* Margen superior para separar el iframe de otros elementos */
+        }
+
+        /* Estilos para el iframe */
+        iframe {
+            width: 700px; /* Ancho del iframe */
+            height: 520px; /* Alto del iframe */
+            margin: 0 auto; /* Centrar horizontalmente */
+            display: block; /* Para centrar verticalmente */
+        }
     </style>
 </head>
 <body>
     <h1>Hola, {{ usuario }}</h1>
-    <p>Tu saldo actual es: ${{ saldo_actual if saldo_actual is not none else 0 }}</p>
+    <div class="saldo-actual">
+        Tu saldo actual es: ${{ saldo_actual if saldo_actual is not none else 0 }}
+    </div>
 
     <div class="table-container">
-        <h1 style="text-align: center;">Historial de Transacciones</h1>
+        <h1 style="text-align: center;">Tus Movimientos</h1>
         <table>
             <tr>
                 <th>Tipo de Transacción</th>
@@ -82,8 +110,15 @@
     </div>
     <div class="btn-container">
         <a href="/agregar_transaccion" class="btn-primary">Agregar Transaccion</a>
-        <a href="/wish" class ="btn-primary">Wish List</a>
+        <a href="/wish" class="btn-primary">Wish List</a>
         <a href="/gastos_fijos" class="btn-primary">Gastos Fijos</a>
+        <a href="/calculadora2" class="btn-primary">Calculadora</a>
+    </div>
+    <div class="login-button">
+        <a href="/" class="btn-primary" style="background-color: #2196F3;">Cerrar Sesión</a>
+    </div>
+    <div class="iframe-container">
+        <iframe title="tpi_soporte" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=0a55406b-a8ec-4633-90ce-9806464730e3&autoAuth=true&ctid=a447b9c2-a213-4ec1-8103-3ea69a516a59" frameborder="0" allowFullScreen="true"></iframe>
     </div>
 </body>
 </html>

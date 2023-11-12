@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Tus Wishes</title>
+</head>
+
+{% block contenido %}
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">Wishes</h3>
+            <a href="{{ url_for('agregar_wish') }}" class="button is-success">Agregar</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Motivo</th>
+                        <th>Monto</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for wish in wishes %}
+                    <tr>
+                        <td>{{ wish[2] }}</td>
+                        <td>${{ wish[3] }}</td>
+                        <td>
+                            <a href="{{ url_for('editar_wish', id_wish = wish[0]) }}" class="button is-info">Editar</a>
+                        </td>
+                        <td>
+                            <a href="{{ url_for('eliminar_wish', id_wish=wish[0]) }}" class="button is-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
+<a href="/inicio" class="btn btn-primary">Volver a Inicio</a>
+</html>

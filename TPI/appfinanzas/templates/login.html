@@ -2,6 +2,67 @@
 <html>
 <head>
     <title>Iniciar Sesión</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            background-color: #f44336; /* Color de fondo rojo para los mensajes de error */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px; /* Agregado margen superior para separar el botón Iniciar Sesión */
+        }
+
+        a.btn-crear-usuario {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px; /* Agregado margen superior para separar el botón Crear Usuario */
+        }
+    </style>
 </head>
 <body>
     <h1>Iniciar Sesión</h1>
@@ -22,6 +83,6 @@
         <input type="submit" value="Iniciar Sesión">
     </form>
 
-    <a href="/registro">Crear Usuario</a>
+    <a href="/registro" class="btn-crear-usuario">Crear Usuario</a>
 </body>
 </html>

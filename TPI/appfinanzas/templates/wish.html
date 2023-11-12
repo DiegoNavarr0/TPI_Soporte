@@ -2,21 +2,100 @@
 <html lang="es">
 <head>
     <title>Tus Wishes</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+
+        .button-danger {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button-info {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .button-danger {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .button-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-blue {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 {% block contenido %}
 <section class="section">
     <div class="columns">
         <div class="column">
-            <h3 class="is-size-3">Wishes</h3>
-            <a href="{{ url_for('agregar_wish') }}" class="button is-success">Agregar</a>
-            <table class="table">
+            <h1>Tus Wishes</h1>
+            <a href="/agregar_wish" class="btn-primary">Agregar Wish</a>
+            <table>
                 <thead>
                     <tr>
                         <th>Motivo</th>
                         <th>Monto</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,11 +103,9 @@
                     <tr>
                         <td>{{ wish[2] }}</td>
                         <td>${{ wish[3] }}</td>
-                        <td>
-                            <a href="{{ url_for('editar_wish', id_wish = wish[0]) }}" class="button is-info">Editar</a>
-                        </td>
-                        <td>
-                            <a href="{{ url_for('eliminar_wish', id_wish=wish[0]) }}" class="button is-danger">Eliminar</a>
+                        <td class="button-actions">
+                            <a href="{{ url_for('editar_wish', id_wish=wish[0]) }}" class="button btn-primary">Editar</a>
+                            <button class="button button-danger" onclick="confirmarEliminar({{ wish[0] }})">Eliminar</button>
                         </td>
                     </tr>
                     {% endfor %}
@@ -38,5 +115,45 @@
     </div>
 </section>
 {% endblock %}
-<a href="/inicio" class="btn btn-primary">Volver a Inicio</a>
+<div class="button-container">
+    <a href="/inicio" class="btn-blue">Volver a Inicio</a>
+</div>
+<script>
+    function confirmarEliminar(idWish) {
+        // Crear botones seleccionables
+        var reasonButtons = document.createElement("div");
+        reasonButtons.innerHTML = `
+            <p>Selecciona la razón para eliminar el Wish:</p>
+            <button class="button btn-blue" onclick="eliminarWish(${idWish}, 1)">Ya no lo quiero</button>
+            <button class="button btn-blue" onclick="eliminarWish(${idWish}, 2)">Ya lo compré</button>
+        `;
+
+        // Crear un div modal
+        var modalDiv = document.createElement("div");
+        modalDiv.className = "modal";
+        modalDiv.innerHTML = `
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModal()">&times;</span>
+            </div>
+        `;
+
+        // Agregar los botones seleccionables al modal
+        modalDiv.querySelector(".modal-content").appendChild(reasonButtons);
+
+        // Mostrar el modal
+        document.body.appendChild(modalDiv);
+    }
+
+    function eliminarWish(idWish, selectedReason) {
+        // Redirige a la URL de eliminación con la razón seleccionada
+        window.location.href = `/eliminar_wish/${idWish}?razon=${selectedReason}`;
+    }
+
+    function cerrarModal() {
+        var modal = document.querySelector(".modal");
+        if (modal) {
+            modal.parentNode.removeChild(modal);
+        }
+    }
+</script>
 </html>

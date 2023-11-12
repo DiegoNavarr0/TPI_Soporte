@@ -2,28 +2,95 @@
 <html>
 <head>
     <title>Gastos Fijos</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-danger {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-blue {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Gastos Fijos</h1>
-    <a href="/agregar_gasto_fijo" class="btn btn-primary">Agregar Gastos Fijos</a>
+    <a href="/agregar_gasto_fijo" class="btn-primary">Agregar Gastos Fijos</a>
     <table>
         <tr>
             <th>Descripción</th>
             <th>Monto</th>
-            <th>Fecha de Vencimiento</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
+            <th>Día de Cobro</th>
+            <th>Acciones</th>
         </tr>
         {% for gasto in gastos %}
             <tr>
                 <td>{{ gasto[2] }}</td>
                 <td>${{ gasto[3] }}</td>
                 <td>{{ gasto[4] }}</td>
-                <td><a href="{{ url_for('editar_gasto_fijo', id_gastosfijos = gasto[0]) }}" class="button is-info">Editar</a></td>
-                <td><a href="{{ url_for('eliminar_gasto_fijo', id_gastosfijos= gasto[0]) }}" class="button is-danger">Eliminar</a></td>
+                <td class="button-actions">
+                    <a href="{{ url_for('editar_gasto_fijo', id_gastosfijos = gasto[0]) }}" class="button btn-primary">Editar</a>
+                    <a href="{{ url_for('eliminar_gasto_fijo', id_gastosfijos= gasto[0]) }}" class="button button-danger">Eliminar</a>
+                </td>
             </tr>
         {% endfor %}
     </table>
+    <div class="button-container">
+        <a href="/inicio" class="btn-blue">Volver a Inicio</a>
+    </div>
 </body>
-<a href="/inicio" class="btn btn-primary">Volver a Inicio</a>
 </html>

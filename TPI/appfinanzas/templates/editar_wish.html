@@ -2,28 +2,85 @@
 <html>
 <head>
     <title>Editar Wish</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px; /* Aumentado el margen superior del botón "Guardar Cambios" */
+            margin-bottom: 20px; /* Aumentado el margen inferior del botón "Guardar Cambios" */
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-link {
+            background-color: #f44336; /* Cambiado a rojo */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px; /* Aumentado el margen superior del botón "Cancelar" */
+        }
+    </style>
 </head>
 <body>
     <h1>Editar Wish</h1>
     <form method="post" action="{{ url_for('editar_wish', id_wish = wish[0]) }}">
         <div class="field">
-            <label for="motivo" class="label">Motivo:</label>
+            <label for="motivo">Motivo:</label>
             <div class="control">
                 <input type="text" id="motivo" name="motivo" value="{{ wish[2] }}" required>
             </div>
         </div>
         <div class="field">
-            <label for="monto" class="label">Monto:</label>
+            <label for="monto">Monto:</label>
             <div class="control">
                 <input type="number" step="0.01" id="monto" name="monto" value="{{ wish[3] }}" required>
             </div>
         </div>
-        <div class="field is-grouped">
+        <div class="field is-grouped button-container">
             <div class="control">
-                <button class="button is-primary" type="submit">Guardar Cambios</button>
+                <button class="button" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; margin-top: 20px; margin-bottom: 20px;" type="submit">Guardar Cambios</button>
             </div>
             <div class="control">
-                <a href="{{ url_for('wish') }}" class="button is-link">Cancelar</a>
+                <a href="{{ url_for('wish') }}" class="btn-link">Cancelar</a>
             </div>
         </div>
     </form>

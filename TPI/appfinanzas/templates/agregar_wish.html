@@ -2,6 +2,67 @@
 <html>
 <head>
     <title>Agregar Wish</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px; /* Agregado margen inferior para separar el campo Monto del botón */
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-link {
+            background-color: #f44336; /* Cambiado a rojo el background del botón Cancelar */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Agregar Wish</h1>
@@ -10,10 +71,12 @@
         <input type="text" name="motivo" id="motivo" required><br>
 
         <label for="monto">Monto:</label>
-        <input type="number" name="monto" id="monto" required><br>
+        <input type="number" name= "monto" id="monto" required><br>
 
         <input type="submit" value="Agregar Wish">
     </form>
-    <a href="{{ url_for('gastos_fijos') }}" class="button is-link">Cancelar</a>
+    <div class="button-container">
+        <a href="{{ url_for('wish') }}" class="btn-link">Cancelar</a>
+    </div>
 </body>
 </html>
